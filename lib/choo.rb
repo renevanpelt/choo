@@ -1,4 +1,4 @@
-
+require "choo/version"
 
 module Choo
 

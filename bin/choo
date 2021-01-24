@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require "bundler/setup"
 require "dry/cli"
-
+require 'choo'
 
 module Choo
   module CLI
@@ -16,7 +16,19 @@ module Choo
         end
       end
       
-      register "version", Version, aliases: ["v", "-v", "--version"]
+      class New < Dry::CLI::Command
+        desc "Create a new project"
+        argument :name, type: :string,  required: true, desc: "Application name"
+
+        def call(*)
+          puts Choo::VERSION
+        end
+      end
+
+      
+      
+      register "version", Version,  aliases: ["v", "-v", "--version"]
+      register "new", New,          aliases: ["n"]
 
       
       
